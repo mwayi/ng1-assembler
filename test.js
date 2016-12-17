@@ -1,9 +1,5 @@
 'use strict';
 
-var NgScript   = require('./src/ng-script');
-var NgTemplate = require('./src/ng-template');
-
-
 new NgTemplate([
     './fixtures/example/app/**Page.html', 
     './fixtures/example/app/**.tpl.html', 

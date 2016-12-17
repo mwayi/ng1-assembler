@@ -1,0 +1,40 @@
+{
+  "name": "ng1-assembler",
+  "description": "Assemble angular 1 scripts and templates",
+  "version": "0.1.0",
+  "homepage": "https://github.com/mwayi/ng1-assembler",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mwayi/ng1-assembler.git"
+  },
+  "author": "Mwayi Dzanjaimodzi <mwayi@smrtr.co.uk> (https://smrtr.co.uk)",
+  "main": "./index.js",
+  "files": [
+    "index.js",
+    "src"
+  ],
+  "dependencies": {
+    "glob-fs": "^0.1.6",
+    "walk-sync": "^0.3.1"
+  },
+  "devDependencies": {
+    "expect": "^1.14.0",
+    "mocha": "^2.0.0",
+    "mocha-lcov-reporter": "^1.0.0",
+    "rimraf": "^2.2.5",
+    "should": "^7.0.0",
+    "sinon": "^1.10.3"
+  },
+  "scripts": {},
+  "engines": {
+    "node": ">=0.10"
+  },
+  "license": "MIT",
+  "keywords": [
+    "Angular1",
+    "assembler"
+  ],
+  "bugs": {
+    "url": "https://github.com/mwayi/ng1-assembler/issues"
+  }
+}

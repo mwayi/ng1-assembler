@@ -55,7 +55,7 @@ NgTemplate.prototype.addSources = function(source) {
 
 /**
  * Load files from directories.
- *
+ *s
  * @param  {String|Array} source(s) to read from.
  * @return void
  */

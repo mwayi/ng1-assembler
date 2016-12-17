@@ -8,13 +8,13 @@ var glob = require('glob-fs')({ gitignore: true });
  *
  * @author Mwayi Dzanjalimodzi
  *
- * var ngTemplate = new NgScripts(['.src/*.js']);
+ * var ngTemplate = new NgScript(['.src/*.js']);
  * ngTemplate.writeToFile(destination);
  *
  * @var {Array} src of files to read from.
  * @var {Array} destination to write to.
  */
-var NgScripts = function(source, moduleName, dependencies) {
+var NgScript = function(source, moduleName, dependencies) {
 	this.addSources(source);
 	this.loadFiles(source);
 	this.buildScripts(this.files);
@@ -25,17 +25,17 @@ var NgScripts = function(source, moduleName, dependencies) {
 /**
  * @var {Array} sources to look for files.
  */
-NgScripts.prototype.sources = [];
+NgScript.prototype.sources = [];
 
 /**
  * @var {Array} file bus.
  */
-NgScripts.prototype.files = {};
+NgScript.prototype.files = {};
 
 /**
  * @var {Array} the scripts added.
  */
-NgScripts.prototype.scripts = [];
+NgScript.prototype.scripts = [];
 
 /**
  * Load files from directories
@@ -43,7 +43,7 @@ NgScripts.prototype.scripts = [];
  * @param  {String|Array} source(s) to read from.
  * @return void
  */
-NgScripts.prototype.addSources = function(source) {
+NgScript.prototype.addSources = function(source) {
 	if(typeof source == 'string') {
 		this.sources.push(source);
 	}
@@ -60,7 +60,7 @@ NgScripts.prototype.addSources = function(source) {
  * @param  {String|Array} source(s) to read from.
  * @return void
  */
-NgScripts.prototype.loadFiles = function() {
+NgScript.prototype.loadFiles = function() {
 	for(var i in this.sources) {
 		var files = glob.readdirSync(this.sources[i]);
 		for(var j in files) {
@@ -75,7 +75,7 @@ NgScripts.prototype.loadFiles = function() {
  * @param  {Array} array of files to render as templates.
  * @return {String} of templates.
  */
-NgScripts.prototype.buildScripts = function(files) {
+NgScript.prototype.buildScripts = function(files) {
 	for(var file in files) {
 		this.scripts.push(this.getContents(file));
 	}
@@ -87,7 +87,7 @@ NgScripts.prototype.buildScripts = function(files) {
  * @param  {fileName} The file path
  * @return {String}   The file contents.
  */
-NgScripts.prototype.getContents = function(filePath) {
+NgScript.prototype.getContents = function(filePath) {
 	var fileBuffer = FileSystem.readFileSync(filePath);
 	
 	return fileBuffer.toString();
@@ -100,9 +100,8 @@ NgScripts.prototype.getContents = function(filePath) {
  * @param  {Array}  A list of dependencies that the module has.
  * @return {String}
  */
-NgScripts.prototype.getModuleSyntax = function(moduleName, dependencies) {
+NgScript.prototype.getModuleSyntax = function(moduleName, dependencies) {
 
-	console.log(this.dependencies);
 	if(!Array.isArray(dependencies)) {
 		dependencies = []
 	}
@@ -120,7 +119,7 @@ NgScripts.prototype.getModuleSyntax = function(moduleName, dependencies) {
  * @param  {String} The destination of the file to write to.
  * @return void
  */
-NgScripts.prototype.writeToFile = function(destination) {
+NgScript.prototype.writeToFile = function(destination) {
 	var contents = 
 	this.getModuleSyntax(this.moduleName, this.dependencies) + "\n" + 
 	this.scripts.join(";\n");
@@ -130,6 +129,6 @@ NgScripts.prototype.writeToFile = function(destination) {
 
 
 module.exports = function(source, moduleName, dependencies) {
-	return new NgScripts(source, moduleName, dependencies);
+	return new NgScript(source, moduleName, dependencies);
 }
 
